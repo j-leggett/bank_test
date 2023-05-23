@@ -2,10 +2,15 @@ class Transaction {
   
   constructor(amount) {
     this.amount = amount;
+    this.date = new Date().toLocaleDateString();
   }
 
-  transactionAmount() {
+  getAmount() {
     return this.amount
+  }
+
+  getDate() {
+  return this.date
   }
 }
 
