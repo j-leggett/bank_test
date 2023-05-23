@@ -3,7 +3,7 @@ class Transaction {
   constructor(amount) {
     this.amount = amount;
     this.date = new Date().toLocaleDateString();
-    this.type = null;
+    this.type = null; //debit or credit
   }
 
   getAmount() {

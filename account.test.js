@@ -52,5 +52,11 @@ describe('Account class', () => {
     account.deposit(500);
     expect(account.getBalance()).toEqual(600)
   })
+
+  it('generates an empty statement when no transactions made', () => {
+    const account = new Account;
+    result = account.printStatement();
+    expect(result).toBe('date || credit || debit || balance')
+  })
 })
 

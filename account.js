@@ -5,6 +5,7 @@ class Account {
   constructor() {
     this.balance = 0;
     this.transactions = [];
+    this.statement = 'date || credit || debit || balance'
   }
 
   getBalance() {
@@ -16,7 +17,6 @@ class Account {
     const transaction = new Transaction(amount);
     transaction.debitOrCredit('credit');
     this.transactions.push(transaction);
-
   }
 
   withdraw(amount) {
@@ -24,7 +24,11 @@ class Account {
     const transaction = new Transaction(amount);
     transaction.debitOrCredit('debit');
     this.transactions.push(transaction);
+  }
 
+  printStatement() {
+    console.log(this.statement)
+    return this.statement
   }
 
 }
