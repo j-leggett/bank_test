@@ -26,5 +26,23 @@ describe('Account class', () => {
     expect(transactions[0].type).toEqual('debit')
     expect(transactions[0].date).toEqual('23/05/2023')
   })
+
+  it('records the many transactions succesfully', () => {
+    const account = new Account;
+    account.deposit(200);
+    account.withdraw(100);
+    account.deposit(500);
+    const transactions = account.transactions
+    expect(transactions.length).toBe(3)
+    expect(transactions[0].amount).toEqual(200)
+    expect(transactions[0].type).toEqual('credit')
+    expect(transactions[0].date).toEqual('23/05/2023')
+    expect(transactions[1].amount).toEqual(100)
+    expect(transactions[1].type).toEqual('debit')
+    expect(transactions[1].date).toEqual('23/05/2023')
+    expect(transactions[2].amount).toEqual(500)
+    expect(transactions[2].type).toEqual('credit')
+    expect(transactions[2].date).toEqual('23/05/2023')
+  })
 })
 
