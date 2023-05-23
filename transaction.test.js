@@ -13,11 +13,19 @@ describe('Transaction class', () => {
     expect(transaction.getDate()).toEqual(new Date().toLocaleDateString())
   })
 
-  it('transations are saved as either debit or credit', () => {
+  it('transations are saved as credit', () => {
     const transaction = new Transaction(500)
     transaction.debitOrCredit('credit')
     result = transaction.getType()
     console.log(result)
     expect(result).toEqual('credit')
+  })
+
+  it('transations are saved as debit', () => {
+    const transaction = new Transaction(500)
+    transaction.debitOrCredit('debit')
+    result = transaction.getType()
+    console.log(result)
+    expect(result).toEqual('debit')
   })
 })
