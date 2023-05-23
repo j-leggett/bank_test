@@ -17,7 +17,6 @@ describe('Transaction class', () => {
     const transaction = new Transaction(500)
     transaction.debitOrCredit('credit')
     result = transaction.getType()
-    console.log(result)
     expect(result).toEqual('credit')
   })
 
@@ -25,7 +24,6 @@ describe('Transaction class', () => {
     const transaction = new Transaction(500)
     transaction.debitOrCredit('debit')
     result = transaction.getType()
-    console.log(result)
     expect(result).toEqual('debit')
   })
 })
