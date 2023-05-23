@@ -44,5 +44,13 @@ describe('Account class', () => {
     expect(transactions[2].type).toEqual('credit')
     expect(transactions[2].date).toEqual('23/05/2023')
   })
+
+  it('updates the balance when transactions are made', () => {
+    const account = new Account;
+    account.deposit(200);
+    account.withdraw(100);
+    account.deposit(500);
+    expect(account.getBalance()).toEqual(600)
+  })
 })
 

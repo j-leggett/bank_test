@@ -12,15 +12,19 @@ class Account {
   }
 
   deposit(amount) {
+    this.balance += amount;
     const transaction = new Transaction(amount);
     transaction.debitOrCredit('credit');
     this.transactions.push(transaction);
+
   }
 
   withdraw(amount) {
+    this.balance -= amount;
     const transaction = new Transaction(amount);
     transaction.debitOrCredit('debit');
     this.transactions.push(transaction);
+
   }
 
 }
