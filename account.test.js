@@ -16,5 +16,15 @@ describe('Account class', () => {
     expect(transactions[0].type).toEqual('credit')
     expect(transactions[0].date).toEqual('23/05/2023')
   })
+
+  it('allows you to withdraw money and save this to transaction array', () => {
+    const account = new Account;
+    account.withdraw(400)
+    const transactions = account.transactions
+    expect(transactions.length).toBe(1)
+    expect(transactions[0].amount).toEqual(400)
+    expect(transactions[0].type).toEqual('debit')
+    expect(transactions[0].date).toEqual('23/05/2023')
+  })
 })
 
