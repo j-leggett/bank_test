@@ -2,6 +2,7 @@ const Account = require('./account')
 
 describe('Account class', () => {
 
+
   it('generates an account with no money in it', () => {
     const account = new Account;
     expect(account.getBalance()).toEqual(0)
@@ -69,6 +70,14 @@ describe('Account class', () => {
     const account = new Account;
     account.withdraw(100)
     expect(account.printStatement()).toBe('date || credit || debit || balance\n23/05/2023 || || 100 || -100')
+  })
+
+  it('formats statement correctly for credit and debit transactions', () => {
+    const account = new Account;
+    account.deposit(200)
+    account.deposit(300)
+    account.withdraw(100)
+    expect(account.printStatement()).toBe('date || credit || debit || balance\n23/05/2023 || 200 || || 200\n23/05/2023 || 300 || || 500\n23/05/2023 || || 100 || 400')
   })
 })
 
