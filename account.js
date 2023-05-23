@@ -6,15 +6,9 @@ class Account {
     this.balance = 0;
     this.transactions = [];
     this.statement = 'date || credit || debit || balance';
-    this.currentBalance = 0
-  }
-
-  getBalance() {
-    return this.balance
   }
 
   deposit(amount) {
-    this.balance += amount;
     const transaction = new Transaction(amount);
     transaction.debitOrCredit('credit');
     transaction.balance = this.balance
@@ -22,7 +16,6 @@ class Account {
   }
 
   withdraw(amount) {
-    this.balance -= amount;
     const transaction = new Transaction(amount);
     transaction.debitOrCredit('debit');
     transaction.balance = this.balance
@@ -33,13 +26,13 @@ class Account {
 
     this.transactions.forEach((transaction) => {
       if ( transaction.type === 'credit') {
-        this.currentBalance += transaction.amount;
-        const statementLine = `${transaction.date} || ${transaction.amount} || || ${this.currentBalance}`;
+        this.balance += transaction.amount;
+        const statementLine = `${transaction.date} || ${transaction.amount} || || ${this.balance}`;
         this.statement += '\n' + statementLine;
 
       } else {
-        this.currentBalance -= transaction.amount;
-        const statementLine = `${transaction.date} || || ${transaction.amount} || ${this.currentBalance}`;
+        this.balance -= transaction.amount;
+        const statementLine = `${transaction.date} || || ${transaction.amount} || ${this.balance}`;
         this.statement += '\n' + statementLine;
       }
     })
@@ -48,7 +41,6 @@ class Account {
 
   printStatement() {
     this.formatStatement();
-    console.log(this.statement);
     return this.statement;
   }
 

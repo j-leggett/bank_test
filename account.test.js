@@ -5,7 +5,7 @@ describe('Account class', () => {
 
   it('generates an account with no money in it', () => {
     const account = new Account;
-    expect(account.getBalance()).toEqual(0)
+    expect(account.balance).toEqual(0)
   })
 
   it('allows you to deposit money and save this to transaction array', () => {
@@ -51,7 +51,8 @@ describe('Account class', () => {
     account.deposit(200);
     account.withdraw(100);
     account.deposit(500);
-    expect(account.getBalance()).toEqual(600)
+    account.formatStatement()
+    expect(account.balance).toEqual(600)
   })
 
   it('generates an empty statement when no transactions made', () => {
