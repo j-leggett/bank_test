@@ -59,10 +59,16 @@ describe('Account class', () => {
     expect(result).toBe('date || credit || debit || balance')
   })
 
-  it('formats statement correctly for debit transactions', () => {
+  it('formats statement correctly for credit transactions', () => {
     const account = new Account;
     account.deposit(100)
     expect(account.printStatement()).toBe('date || credit || debit || balance\n23/05/2023 || 100 || || 100')
+  })
+
+  it('formats statement correctly for debit transactions', () => {
+    const account = new Account;
+    account.withdraw(100)
+    expect(account.printStatement()).toBe('date || credit || debit || balance\n23/05/2023 || || 100 || -100')
   })
 })
 
