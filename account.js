@@ -1,4 +1,4 @@
-class BankAccount {
+class Account {
 
   constructor() {
     this.amount = 0;
@@ -7,6 +7,10 @@ class BankAccount {
   getAmount() {
     return this.amount
   }
+
+  deposit(money) {
+    this.amount += money;
+  }
 }
 
-module.exports = BankAccount
+module.exports = Account
