@@ -14,4 +14,11 @@ describe('Bank class', () => {
     account.deposit(150)
     expect(account.getAmount()).toEqual(150)
   })
+
+  it('has the courrect account balance after depositing and withdrawing money', () => {
+    const account = new Account;
+    account.deposit(150)
+    account.withdraw(40)
+    expect(account.getAmount()).toEqual(110)
+  })
 })

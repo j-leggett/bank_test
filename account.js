@@ -11,6 +11,10 @@ class Account {
   deposit(money) {
     this.amount += money;
   }
+
+  withdraw(money) {
+    this.amount -= money;
+  }
 }
 
 module.exports = Account
