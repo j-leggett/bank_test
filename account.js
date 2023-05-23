@@ -5,7 +5,8 @@ class Account {
   constructor() {
     this.balance = 0;
     this.transactions = [];
-    this.statement = 'date || credit || debit || balance'
+    this.statement = 'date || credit || debit || balance';
+    this.currentBalance = 0
   }
 
   getBalance() {
@@ -29,15 +30,16 @@ class Account {
   }
 
   formatStatement() {
+
     this.transactions.forEach((transaction) => {
       if ( transaction.type === 'credit') {
-        this.balance += transaction.amount;
-        const statementLine = `${transaction.date} || ${transaction.amount} || || ${transaction.balance}`;
+        this.currentBalance += transaction.amount;
+        const statementLine = `${transaction.date} || ${transaction.amount} || || ${this.currentBalance}`;
         this.statement += '\n' + statementLine;
 
       } else {
-        this.balance -= transaction.amount;
-        const statementLine = `${transaction.date} || || ${transaction.amount} || ${transaction.balance}`;
+        this.currentBalance -= transaction.amount;
+        const statementLine = `${transaction.date} || || ${transaction.amount} || ${this.currentBalance}`;
         this.statement += '\n' + statementLine;
       }
     })

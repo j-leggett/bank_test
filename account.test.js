@@ -79,5 +79,16 @@ describe('Account class', () => {
     account.withdraw(100)
     expect(account.printStatement()).toBe('date || credit || debit || balance\n23/05/2023 || 200 || || 200\n23/05/2023 || 300 || || 500\n23/05/2023 || || 100 || 400')
   })
+
+  it('does not duplicat balance when bank statement is printed, then updated and then printed again', () => {
+    const account = new Account;
+  account.deposit(200)
+  account.deposit(300)
+  result1 = account.printStatement()
+  expect(result1).toEqual('date || credit || debit || balance\n23/05/2023 || 200 || || 200\n23/05/2023 || 300 || || 500')
+  account.withdraw(100)
+  result2 = account.printStatement()
+  expect(result2).toEqual('date || credit || debit || balance\n23/05/2023 || 200 || || 200\n23/05/2023 || 300 || || 500\n23/05/2023 || || 100 || 400') 
+  })
 })
 
