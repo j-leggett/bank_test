@@ -23,7 +23,6 @@ class Account {
   }
 
   formatStatement() {
-
     this.transactions.forEach((transaction) => {
       if ( transaction.type === 'credit') {
         this.balance += transaction.amount;
@@ -41,6 +40,7 @@ class Account {
 
   printStatement() {
     this.formatStatement();
+    console.log(this.statement)
     return this.statement;
   }
 
