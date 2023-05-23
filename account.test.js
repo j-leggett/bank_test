@@ -27,7 +27,7 @@ describe('Account class', () => {
     expect(transactions[0].date).toEqual('23/05/2023')
   })
 
-  it('records the many transactions succesfully', () => {
+  it('records many transactions succesfully', () => {
     const account = new Account;
     account.deposit(200);
     account.withdraw(100);
@@ -57,6 +57,12 @@ describe('Account class', () => {
     const account = new Account;
     result = account.printStatement();
     expect(result).toBe('date || credit || debit || balance')
+  })
+
+  it('formats statement correctly for debit transactions', () => {
+    const account = new Account;
+    account.deposit(100)
+    expect(account.printStatement()).toBe('date || credit || debit || balance\n23/05/2023 || 100 || || 100')
   })
 })
 

@@ -26,7 +26,22 @@ class Account {
     this.transactions.push(transaction);
   }
 
+  formatStatement() {
+    this.transactions.forEach((transaction) => {
+      if ( transaction.type === 'credit') {
+        const statementLine = `${transaction.date} || ${transaction.amount} || || ${this.balance}`
+        this.statement += '\n' + statementLine
+
+      } else {
+        const statementLine = `${transaction.date} || || ${transaction.amount} || ${this.balance}`
+        this.statement += '\n' + statementLine
+      }
+    })
+    this.transactions = []
+  }
+
   printStatement() {
+    this.formatStatement()
     console.log(this.statement)
     return this.statement
   }
