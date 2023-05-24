@@ -51,8 +51,7 @@ describe('Account class', () => {
     account.deposit(200);
     account.withdraw(100);
     account.deposit(500);
-    account.formatStatement()
-    expect(account.balance).toEqual(600)
+    expect(account.getBalance()).toEqual(600)
   })
 
   it('generates an empty statement when no transactions made', () => {

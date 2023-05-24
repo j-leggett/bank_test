@@ -8,6 +8,18 @@ class Account {
     this.statement = 'date || credit || debit || balance';
   }
 
+  getBalance() {
+    let total = 0
+    this.transactions.forEach((transaction) => {
+      if ( transaction.type === 'credit') {
+        total += transaction.amount;
+      } else {
+        total -= transaction.amount
+      }
+    })
+    return total
+  }
+
   deposit(amount) {
     const transaction = new Transaction(amount);
     transaction.debitOrCredit('credit');
