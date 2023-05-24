@@ -15,7 +15,7 @@ describe('Account class', () => {
     expect(transactions.length).toBe(1)
     expect(transactions[0].amount).toEqual(500)
     expect(transactions[0].type).toEqual('credit')
-    expect(transactions[0].date).toEqual('23/05/2023')
+    expect(transactions[0].date).toEqual(new Date().toLocaleDateString())
   })
 
   it('allows you to withdraw money and save this to transaction array', () => {
@@ -25,7 +25,7 @@ describe('Account class', () => {
     expect(transactions.length).toBe(1)
     expect(transactions[0].amount).toEqual(400)
     expect(transactions[0].type).toEqual('debit')
-    expect(transactions[0].date).toEqual('23/05/2023')
+    expect(transactions[0].date).toEqual(new Date().toLocaleDateString())
   })
 
   it('records many transactions succesfully', () => {
@@ -37,13 +37,13 @@ describe('Account class', () => {
     expect(transactions.length).toBe(3)
     expect(transactions[0].amount).toEqual(200)
     expect(transactions[0].type).toEqual('credit')
-    expect(transactions[0].date).toEqual('23/05/2023')
+    expect(transactions[0].date).toEqual(new Date().toLocaleDateString())
     expect(transactions[1].amount).toEqual(100)
     expect(transactions[1].type).toEqual('debit')
-    expect(transactions[1].date).toEqual('23/05/2023')
+    expect(transactions[1].date).toEqual(new Date().toLocaleDateString())
     expect(transactions[2].amount).toEqual(500)
     expect(transactions[2].type).toEqual('credit')
-    expect(transactions[2].date).toEqual('23/05/2023')
+    expect(transactions[2].date).toEqual(new Date().toLocaleDateString())
   })
 
   it('updates the balance when transactions are made', () => {
@@ -64,13 +64,13 @@ describe('Account class', () => {
   it('formats statement correctly for credit transactions', () => {
     const account = new Account;
     account.deposit(100)
-    expect(account.printStatement()).toBe('date || credit || debit || balance\n23/05/2023 || 100 || || 100')
+    expect(account.printStatement()).toBe(`date || credit || debit || balance\n${new Date().toLocaleDateString()} || 100 || || 100`)
   })
 
   it('formats statement correctly for debit transactions', () => {
     const account = new Account;
     account.withdraw(100)
-    expect(account.printStatement()).toBe('date || credit || debit || balance\n23/05/2023 || || 100 || -100')
+    expect(account.printStatement()).toBe(`date || credit || debit || balance\n${new Date().toLocaleDateString()} || || 100 || -100`)
   })
 
   it('formats statement correctly for credit and debit transactions', () => {
@@ -78,7 +78,7 @@ describe('Account class', () => {
     account.deposit(200)
     account.deposit(300)
     account.withdraw(100)
-    expect(account.printStatement()).toBe('date || credit || debit || balance\n23/05/2023 || 200 || || 200\n23/05/2023 || 300 || || 500\n23/05/2023 || || 100 || 400')
+    expect(account.printStatement()).toBe(`date || credit || debit || balance\n${new Date().toLocaleDateString()} || 200 || || 200\n${new Date().toLocaleDateString()} || 300 || || 500\n${new Date().toLocaleDateString()} || || 100 || 400`)
   })
 
   it('does not duplicat balance when bank statement is printed, then updated and then printed again', () => {
@@ -86,10 +86,10 @@ describe('Account class', () => {
   account.deposit(200)
   account.deposit(300)
   result1 = account.printStatement()
-  expect(result1).toEqual('date || credit || debit || balance\n23/05/2023 || 200 || || 200\n23/05/2023 || 300 || || 500')
+  expect(result1).toEqual(`date || credit || debit || balance\n${new Date().toLocaleDateString()} || 200 || || 200\n${new Date().toLocaleDateString()} || 300 || || 500`)
   account.withdraw(100)
   result2 = account.printStatement()
-  expect(result2).toEqual('date || credit || debit || balance\n23/05/2023 || 200 || || 200\n23/05/2023 || 300 || || 500\n23/05/2023 || || 100 || 400') 
+  expect(result2).toEqual(`date || credit || debit || balance\n${new Date().toLocaleDateString()} || 200 || || 200\n${new Date().toLocaleDateString()} || 300 || || 500\n${new Date().toLocaleDateString()} || || 100 || 400`) 
   })
 })
 
